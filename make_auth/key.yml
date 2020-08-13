@@ -1,9 +1,9 @@
 ---
 - name: Set authorized key taken from file
-  hosts: all 
+  hosts: host3 
   tasks:
   - authorized_key:
-      user: user
+      user: devops
       state: present
       key: "{{ lookup('file', '/home/student/.ssh/id_rsa.pub') }}"
 

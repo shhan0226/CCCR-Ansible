@@ -1,0 +1,20 @@
+---
+- name: This is Debug
+  hosts: host1
+  vars:
+    test: ansible
+  tasks:
+  - name: this is msg ( | )
+    debug:
+      msg: |
+        this is 1 line
+        this is 2 line
+        this is 3 line
+
+  - name: this is msg ( > )
+    debug:
+      msg: >
+        this is 1 line
+        this is 2 line
+        this is 3 line
+      

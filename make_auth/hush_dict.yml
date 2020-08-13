@@ -1,0 +1,18 @@
+---
+- name: hash dict
+  hosts: host1
+  gather_facts: no
+  vars:
+    users:
+      jkhan:
+        email:  jkhan@gmail.com
+        first_name: jk
+        last_name: han
+      shhan:
+        email: shhan@gmail.com
+        first_name: sh
+        last_name: han
+  tasks:
+  - name: debug
+    debug:
+      var: users['shhan']

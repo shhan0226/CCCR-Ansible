@@ -1,0 +1,10 @@
+---
+- name: This is Debug
+  hosts: host1
+  gather_facts: no
+  vars:
+  #  test: pay
+  tasks:
+  - name: variable test
+    debug:
+     var: test

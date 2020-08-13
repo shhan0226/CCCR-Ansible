@@ -1,0 +1,39 @@
+---
+- hosts: host1
+  gather_facts: no
+  vars:
+#yaml  
+    cccr:
+      - tc: jkhan
+        class: ansible
+      - tc: sqjang
+        class: terraform
+    guro:
+      - first
+      - second
+      - third
+
+#JSON
+#    cccr: [ { tc: jkhan, class: ansible},
+#            {tc: sgjang, class: ansible} 
+#    ]
+
+
+#    cccr:
+#      - {tc: jkhan, class: ansible}
+#      - {tc: sgjang, class: ansible}
+
+  tasks:
+    - loop: "{{cccr}}"
+      when: item.tc == "jkhan"    
+      debug: 
+#        var: item
+        msg: "{{item.tc}}"
+    
+    - loop: "{{guro}}"    
+      debug: 
+        msg: "{{item}}"
+      when: item == "second"      
+
+
+    

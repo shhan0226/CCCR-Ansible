@@ -1,0 +1,18 @@
+---
+- name: practice4 test play
+  hosts: host1
+  gather_facts: no
+  tasks:
+    - shell: "echo {{item}}"
+      loop:
+        - "one"
+        - "two"
+      register: echo
+    
+    - debug:
+        var: item.stdout
+      loop: 
+        "{{echo.results}}"
+      when: "'one' == item.stdout"
+
+

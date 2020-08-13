@@ -1,0 +1,5 @@
+hostname is {{ansible_facts.hostname}}
+
+this is filea
+cccr Variable is {{ cccr }}
+

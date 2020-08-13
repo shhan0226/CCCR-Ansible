@@ -1,0 +1,13 @@
+---
+- name: templete Test
+  hosts: host1
+ # gather_facts: no
+
+  vars:
+    cccr: ansible
+
+  tasks:
+    - name: execute templete
+      template:
+        src: filea.txt
+        dest: ~/filea.txt

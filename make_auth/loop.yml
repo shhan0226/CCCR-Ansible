@@ -1,0 +1,13 @@
+---
+- hosts: host1
+  gather_facts: no
+  vars:
+     cccr:
+        - firtst
+        - second
+        - third
+  tasks:
+    - name: loop test
+      debug:
+        msg: loop test is {{ item }}
+      loop: "{{cccr}}"

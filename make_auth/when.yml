@@ -1,0 +1,16 @@
+---
+- name: Install Web Server in Centos and ubuntu
+  hosts: web
+  become: true
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_facts.distribution == "CentOS"
+      
+    - name: Install apache2 in Ubuntu
+      apt: 
+        name: apache2
+        state: latest
+      when: ansible_facts.distribution == "Ubuntu"

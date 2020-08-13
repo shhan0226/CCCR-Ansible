@@ -1,0 +1,25 @@
+---
+- name: Deploy Web server
+  hosts: web
+  become: true
+  vars_files:
+    - vars/web_var.yml
+
+  tasks:
+  - block:
+    - name: centos install
+      include_tasks: vars/http-Centos.yml
+      when: ansible_distribution == "CentOS"
+  
+  - block:
+    - name: ubuntu install
+      shell: echo "hello"
+#      include_tasks: vars/run.yml
+      when: ansible_distribution == "Ubuntu"
+      register: rst
+      become: true
+
+  - name: display register variable
+    debug:
+     var: rst
+

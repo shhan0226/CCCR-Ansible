@@ -1,0 +1,22 @@
+---
+- name: practice2 play
+  hosts: host1
+  gather_facts: no
+  remote_user: user
+  become: true
+  tasks:
+
+  - name: get url
+    get_url:
+      url: http://cccr3guro.iptime.org/reg_prac.sh
+      dest: /tmp/reg_prac.sh
+      mode: +x
+  
+  - name: shell command
+    shell: /tmp/reg_prac.sh register
+    register: reg1
+
+  - name: display register variable
+    debug:
+     var: reg1.stdout
+    

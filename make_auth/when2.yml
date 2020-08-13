@@ -1,0 +1,10 @@
+---
+- name: Install Web Server in Centos and ubuntu
+  hosts: web
+  become: true
+  vars:
+  tasks:
+    - name: debug test
+      debug: 
+        msg: this is when test
+      when: inventory_hostname in groups.dc1

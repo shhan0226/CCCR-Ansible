@@ -1,11 +1,23 @@
 [web]
 host1
+host3 ansible_user=devops
 
 [db]
 host2
 
+[db:vars]
+ansible_user=user
+
 [web:vars]
 ansible_user=user
 
-[db:vars]
-ansible_user=user
+[dc1]
+host1
+host2
+
+[dc2]
+host3
+
+[datacenter:children]
+dc1
+dc2

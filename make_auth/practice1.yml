@@ -1,0 +1,35 @@
+---
+- name: register play
+  hosts: host1
+  gather_facts: no
+  vars:
+    pkg_name: httpd
+    svc_name: httpd
+    fw_name: http
+    
+  tasks:
+  - name: Install {{ pkg_name }} Package
+    yum: 
+      name: "{{ pkg_name }}"
+      state: latest
+
+  - name: Start the {{ svc_name }} Service
+    service:
+      name: "{{ svc_name }}"
+      state: started
+      enabled: true
+
+  - name: Open the  {{ fw_name }} service
+    firewalld:
+      service: "{{ fw_name }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+
+  - name: capter the result
+    command: cat /etc/hosts
+    register: rst
+
+  - name: display register variable
+    debug:
+     var: rst

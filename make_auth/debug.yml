@@ -1,0 +1,14 @@
+---
+- name: This is Debug
+  hosts: host1
+  vars:
+    test: ansible
+  tasks:
+  - name: Debug
+    debug:
+      msg: this is Debug {{ test }}
+      
+  - name: this is var
+    debug:
+      var: test
+      

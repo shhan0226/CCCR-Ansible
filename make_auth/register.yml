@@ -1,0 +1,12 @@
+---
+- name: register play
+  hosts: host1
+  gather_facts: no
+  tasks:
+  - name: capter the result
+    command: cat /etc/hosts
+    register: rst
+
+  - name: display register variable
+    debug:
+     var: rst

@@ -1,0 +1,12 @@
+---
+- name: hash dict
+  hosts: host1
+  gather_facts: no
+  vars:
+    users:
+      - jkhan
+      - shhan
+  tasks:
+  - name: debug
+    debug:
+      var: users

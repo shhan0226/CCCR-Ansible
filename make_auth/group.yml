@@ -1,0 +1,8 @@
+---
+- name: group_names play
+  hosts: host1
+  gather_facts: no
+  taks:
+    - name: group_names debug
+      debug:
+        var: group_names

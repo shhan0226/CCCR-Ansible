@@ -1,0 +1,30 @@
+---
+- hosts: host1
+  gather_facts: no
+  vars:
+    teachers:
+      - jkhan
+      - sgjang
+    
+    classes:
+      - k8s
+      - openstack
+
+  tasks:
+    - name: loop test
+      debug:
+        msg: |
+          teach is {{itme[0]}}
+          class is {{itme[1]}}
+      with_nested:
+        - "{{teachers}}"
+        - "{{classes}}"
+
+        
+    - name: loop test2
+      debug: 
+        msg: |
+          test is {{item}}
+      loop: "{ teachers}}" 
+      when: item == 'jkhan'
+      

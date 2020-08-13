@@ -1,0 +1,19 @@
+---
+- name: practice3 play
+  hosts: host1
+  vars:
+    reg: cccr
+  tasks:
+    - copy: 
+        src: reg_prac.sh
+        dest: /tmp
+        mode: 0755
+
+    - shell: /tmp/reg_prac.sh {{ test }}
+      register: rst
+    
+    - debug:
+        var: rst.stdout
+#      when: "'cccr' in rst.stdout"
+#      when: reg in rst.stdout
+      changed_when: reg in rst.stdout

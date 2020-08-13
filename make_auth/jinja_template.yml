@@ -1,0 +1,16 @@
+---
+- name: templete Test
+  hosts: host1
+  gather_facts: no
+
+  vars:
+    cccr_user:
+      - user1
+      - user2
+      - user3
+
+  tasks:
+    - name: execute templete
+      template:
+        src: first_template.j2
+        dest: ~/filea.txt
