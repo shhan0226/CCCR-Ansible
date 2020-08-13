@@ -1,0 +1,5 @@
+---
+# tasks file for roles/go2
+- name: incloud tasks
+  import_tasks: tasks/install.yml
+  

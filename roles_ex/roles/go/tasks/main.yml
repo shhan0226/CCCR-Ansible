@@ -1,0 +1,11 @@
+---
+# tasks file for roles/go
+- name: incloud tasks
+  import_tasks: tasks/install.yml
+  
+- name: compy index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+
+
