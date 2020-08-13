@@ -15,3 +15,10 @@
     permanent: yes
     immediate: yes
     state: enabled
+  
+- name: Open the  {{ wport }} service
+  firewalld:
+    port: "{{ wport }}/tcp"
+    permanent: yes
+    immediate: yes
+    state: enabled

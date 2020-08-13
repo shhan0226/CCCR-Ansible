@@ -1,17 +1,16 @@
-- name: Install {{ pkg_name }} Package
-  yum: 
-    name: "{{ pkg_name }}"
+- name: Install {{ upkg_name }} Package
+  apt: 
+    name: "{{ upkg_name }}"
     state: latest
 
-- name: Start the {{ svc_name }} Service
+- name: Start the {{ usvc_name }} Service
   service:
-    name: "{{ svc_name }}"
+    name: "{{ usvc_name }}"
     state: started
     enabled: true
 
 - name: Open the  {{ fw_name }} service
-  firewalld:
-    service: "{{ fw_name }}"
-    permanent: yes
-    immediate: yes
-    state: enabled
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp

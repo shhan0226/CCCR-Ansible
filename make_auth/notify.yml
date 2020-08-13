@@ -1,0 +1,28 @@
+- hosts: host1
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: first module
+    command: id
+    notify:
+      - first
+
+  - name: second module
+    debug:
+      msg: in the middle
+  
+  - name: thrid module
+    command: id
+    changed_when: false
+    notify:
+      - second
+
+  handlers: 
+  - name: second
+    debug:
+      msg: its second name handler
+
+  - name: first
+    debug:
+      msg: its first name handler

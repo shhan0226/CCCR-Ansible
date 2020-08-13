@@ -1,0 +1,17 @@
+- hosts: host1
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: changed a conf tile
+    template:
+      src: test.conf.j2
+      dest: /tmp/01-vhost.conf
+    notify:
+      - restart_service
+
+  handlers:
+  - name: restart_service
+    service:
+      name: httpd
+      state: restarted

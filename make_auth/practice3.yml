@@ -1,0 +1,28 @@
+---
+- name: Deploy Web server
+  hosts: host1
+  become: true
+  vars_files:
+    - vars/web_var.yml
+
+  tasks:
+
+  - block:
+    - name: centos install
+      include_tasks: vars/http-Centos.yml
+      when: ansible_distribution == "CentOS"
+
+  - name: changed a conf tile
+    template:
+      src: 01-vhost.conf
+      dest: /etc/httpd/conf.d/vhost.conf
+      mode: '0644'      
+      
+    notify:
+      - restart_service
+
+  handlers:
+  - name: restart_service
+    service:
+      name: httpd
+      state: restarted  

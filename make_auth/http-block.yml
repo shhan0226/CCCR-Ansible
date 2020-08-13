@@ -13,13 +13,11 @@
   
   - block:
     - name: ubuntu install
-      shell: echo "hello"
-#      include_tasks: vars/run.yml
+#      shell: echo "hello"
+      include_tasks: vars/http-Ubuntu.yml
       when: ansible_distribution == "Ubuntu"
       register: rst
-      become: true
 
   - name: display register variable
     debug:
      var: rst
-
