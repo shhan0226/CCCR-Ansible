@@ -1,0 +1,16 @@
+[web]
+host1
+host3 ansible_user=devops ansible_python_interpreter="/usr/bin/env python3" 
+# ansible_become_pass='dkagh1.' 
+# ansible_password='dkagh1.'
+
+[db]
+host2
+
+[web:vars]
+ansible_user=user
+
+
+[web:vars]
+ansible_user=user
+

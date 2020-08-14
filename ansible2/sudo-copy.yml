@@ -1,0 +1,10 @@
+---
+- name: copy no sudo pass file
+  hosts: host3
+  become: true
+
+  tasks:
+    - name: copy module
+      copy:
+        src: nopasswd
+        dest: /etc/sudoers.d/devops
