@@ -1,6 +1,6 @@
 ---
 - name: display fact
-  hosts: host1
+  hosts: host3
   tasks:
     - name: new
       debug:
