@@ -1,0 +1,16 @@
+- name: Install {{ upkg_name }} Package
+  apt: 
+    name: "{{ upkg_name }}"
+    state: latest
+
+- name: Start the {{ usvc_name }} Service
+  service:
+    name: "{{ usvc_name }}"
+    state: started
+    enabled: true
+
+- name: Open the  {{ fw_name }} service
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp

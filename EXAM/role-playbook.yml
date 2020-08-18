@@ -1,0 +1,12 @@
+---
+- hosts: haproxy
+  become: true
+  roles:
+    - role: haproxy
+
+- hosts: web
+  become: true
+  vars_files:
+    - vars/web_var.yml
+  roles:
+    - role: web

@@ -1,0 +1,14 @@
+---
+# tasks file for roles/web
+
+    - include_tasks: setup-RedHot.yml
+      when: ansible_os_family == 'RedHat'
+
+    - include_tasks: setup-Debian.yml
+      when: ansible_os_family == 'Debian'
+
+    - name: index.html
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+        mode: '0666'

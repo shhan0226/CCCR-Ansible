@@ -1,0 +1,61 @@
+---
+- name: Install haproxy
+  hosts: haproxy
+  become: yes
+  vars:
+    host2: 192.168.122.12
+    host3: 192.168.122.13
+
+  tasks:
+    - name: ensure httpd services is installed
+      yum: 
+        name: httpd
+        state: latest
+
+    - name: fierwalld enable
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+
+    - name: reload service firewalld
+      systemd:
+        name: firewalld
+        state: reloaded
+
+    - name: Install host1 yum utils
+      yum:
+        name: haproxy
+        state: latest
+      become: yes
+
+    - name: deploy template
+      template:
+        src: haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: service start
+      service:
+        name: haproxy
+        state: started
+        enabled: true
+
+
+- name: Deploy Web server
+  hosts: web
+  become: true
+  vars_files:
+    - vars/web_var.yml
+
+  tasks:
+    - include_tasks: setup-RedHat.yml
+      when: ansible_os_family == 'RedHat'
+
+    - include_tasks: setup-Debian.yml
+      when: ansible_os_family == 'Debian'
+
+    - name: index.html
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+        mode: '0666'

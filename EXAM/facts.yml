@@ -1,0 +1,13 @@
+---
+- name: Install haproxy
+  hosts: web
+  become: yes
+ 
+  tasks:
+    - name: var
+      debug:
+        var: ansible_facts.default_ipv4.address
+
+    - name: hostvars
+      debug:
+        var: hostvars
